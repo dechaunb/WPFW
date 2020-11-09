@@ -3,6 +3,25 @@ using System.Collections.Generic;
 
 namespace WPFW_Voorbereiding
 {
+
+    public abstract class Entity {
+        public static void moveEnemyDown(Enemy enemy,Player player){
+            if(enemy.y<=Console.WindowHeight){
+                enemy.y+=1;
+                }else{
+                resetPosition(enemy,player);
+            }
+        } 
+
+        public static void resetPosition(Enemy enemy,Player player){
+                Random random = new Random();
+                if(enemy.x==player.x){
+                    player.kill();
+                }
+                enemy.y=0;
+                enemy.x=random.Next(Console.WindowWidth);
+        }
+    }
    public class Player
     {
         public int x;
@@ -42,7 +61,7 @@ namespace WPFW_Voorbereiding
         }
     }
 
-    public class Enemy {
+    public class Enemy : Entity {
         
         public int x;
         public int y;
@@ -53,13 +72,7 @@ namespace WPFW_Voorbereiding
             x = Console.WindowWidth / 2;
             y = 0;
         }
-        public static void moveEnemyDown(Enemy enemy,Player player){
-            if(enemy.y<=Console.WindowHeight){
-                enemy.y+=1;
-                }else{
-                resetPosition(enemy,player);
-            }
-        }
+        
         public static void moveEnemyHorizontal(Enemy enemy, Player player) {
             Random random = new Random();
                 Action[] actions = {
@@ -92,14 +105,7 @@ namespace WPFW_Voorbereiding
             bullet.y = enemy.y;
             enemy.bullets.Add(bullet);
         }
-        public static void resetPosition(Enemy enemy,Player player){
-                Random random = new Random();
-                if(enemy.x==player.x){
-                    player.kill();
-                }
-                enemy.y=0;
-                enemy.x=random.Next(Console.WindowWidth);
-        }
+        
     }
     public class Bullet{
         public int x;
