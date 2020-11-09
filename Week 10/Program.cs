@@ -4,11 +4,13 @@ namespace WPFW_Voorbereiding
 {
     public class Player
     {
+        public int lives {get; set;}
         public int x;
 
-        public Player()
+        public Player(int lives)
         {
             x = Console.WindowWidth / 2;
+            this.lives = lives;
         }
 
         public void left()
@@ -23,13 +25,23 @@ namespace WPFW_Voorbereiding
     }
 
     public class Enemy {
-        private int x;
-        private int y;
+        public int x {get; set;}
+        public int y {get; set;}
 
-        public Enemy() 
+        public Enemy(int x) 
         {
-            x = Console.WindowWidth / 2;
-            y = Console.WindowHeight / 2;
+            this.x = x;
+            this.y = Console.WindowTop;
+        }
+
+        public void Move() {
+            if(this.y < Console.WindowHeight) {
+                y +=1;
+            } else {
+                y = 0;
+                Random rnd = new Random();
+                x = rnd.Next(0, Console.WindowWidth);
+            }
         }
     }
 
@@ -37,16 +49,38 @@ namespace WPFW_Voorbereiding
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
+            Player player = new Player(3);
+            Enemy enemy = new Enemy(Console.WindowWidth / 2);
             Console.Clear();
             Console.CursorVisible = false;
-            while (true)
+
+            int countDown = 0;
+
+            bool playerHasLives = true;
+            while (playerHasLives == true)
             {
+                // Boolean to determine if a life has been distracted this round
+                bool subtractedLife = false;
+
+                // Moves player/enemies to new position
                 Console.SetCursorPosition(player.x, Console.WindowHeight);
                 Console.Write("O");
+                Console.SetCursorPosition(enemy.x, enemy.y);
+                Console.Write("E");
                 System.Threading.Thread.Sleep(100);
+
+                // Erases player/enemies previous position
                 Console.SetCursorPosition(player.x, Console.WindowHeight);
                 Console.Write(" ");
+                Console.SetCursorPosition(enemy.x, enemy.y);
+                Console.Write(" ");
+
+                // Increases an int by one, this makes the enemy move slower than the player
+                countDown++;
+                if(countDown % 3 == 0) {
+                    enemy.Move();
+                } 
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKey key = Console.ReadKey(true).Key;
@@ -58,6 +92,22 @@ namespace WPFW_Voorbereiding
                     {
                         player.right();
                     }
+                }
+
+                if(enemy.y == Console.WindowHeight) {
+                    if(enemy.x == player.x) {
+                        if(subtractedLife) {
+                            Console.Write("DOOD");
+                            break;
+                        }
+                        player.lives--;
+                        subtractedLife = true;
+                    }
+                }
+
+                if(player.lives <= 0) {
+                    playerHasLives = false;
+                    Console.Write("DOOD");
                 }
 
             }
