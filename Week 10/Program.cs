@@ -6,6 +6,7 @@ namespace WPFW_Voorbereiding
     {
         public int x;
         public int lives = 3;
+        public bool living = true;
 
         public string message = " ";
 
@@ -25,7 +26,7 @@ namespace WPFW_Voorbereiding
             x = Math.Min(Console.WindowWidth, x + 1);
         }
         public void kill(){
-            lives=-1;
+            lives=lives-1;
             if(lives==0){
                 death();
             }else{
@@ -35,10 +36,12 @@ namespace WPFW_Voorbereiding
         }
         public void death(){
             message = "game Over";
+            living = false;
         }
     }
 
     public class Enemy {
+        
         public int x;
         public int y;
 
@@ -49,7 +52,20 @@ namespace WPFW_Voorbereiding
         }
         public static void moveEnemyDown(Enemy enemy,Player player){
             if(enemy.y<=Console.WindowHeight){
-               enemy.y+=1; 
+                enemy.y+=1;
+                }else{
+                resetPosition(enemy,player);
+            }
+        }
+        public static void moveVerticalEnemyDown(Enemy enemy,Player player){
+            Random random = new Random();
+            if(enemy.y<=Console.WindowHeight){
+                enemy.y+=1; 
+                if(enemy.x<=Console.WindowWidth){
+                    enemy.x+=1;
+                }else{
+                    enemy.x=-1;
+                }
             }else{
                 resetPosition(enemy,player);
             }
@@ -71,6 +87,7 @@ namespace WPFW_Voorbereiding
         {
             Player player = new Player();
             Enemy enemy = new Enemy();
+            Enemy verticalEnemy = new Enemy();
             
             Console.Clear();
             Console.CursorVisible = false;
@@ -79,15 +96,16 @@ namespace WPFW_Voorbereiding
             {
                 Console.SetCursorPosition(0,15);
                 Console.Write(player.message);
-                Console.SetCursorPosition(player.x, Console.WindowHeight);
-                Console.Write("O");
-                Console.SetCursorPosition(enemy.x, enemy.y);
-                Console.Write("E");
+                printPlayer(player);
+                printEnemy(enemy,'E');
+                printEnemy(verticalEnemy,'v');
                 System.Threading.Thread.Sleep(75);
                 beurten++;
                 Console.SetCursorPosition(player.x, Console.WindowHeight);
                 Console.Write(" ");
                 Console.SetCursorPosition(enemy.x, enemy.y);
+                Console.Write(" ");
+                Console.SetCursorPosition(verticalEnemy.x, verticalEnemy.y);
                 Console.Write(" ");
                 if (Console.KeyAvailable)
                 {
@@ -107,8 +125,17 @@ namespace WPFW_Voorbereiding
                 if(beurten%5==0){
                         beurten=1;
                         Enemy.moveEnemyDown(enemy,player);
+                        Enemy.moveVerticalEnemyDown(verticalEnemy,player);
                     }
             }//end whileloop
+        }
+        public static void printPlayer(Player player){
+            Console.SetCursorPosition(player.x, Console.WindowHeight);
+            Console.Write("O");
+        }
+        public static void printEnemy(Enemy enemy,char icon){
+            Console.SetCursorPosition(enemy.x, enemy.y);
+            Console.Write(icon);
         }
     }
 }
