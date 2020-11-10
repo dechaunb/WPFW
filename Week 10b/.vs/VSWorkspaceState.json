@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Mvc10B",
+    "\\Mvc10B\\Controllers",
+    "\\Mvc10B\\Models",
+    "\\Mvc10B\\Properties",
+    "\\Mvc10B\\Views",
+    "\\Mvc10B\\wwwroot",
+    "\\Mvc10B\\wwwroot\\css",
+    "\\Mvc10B\\wwwroot\\js",
+    "\\Mvc10B\\wwwroot\\lib"
+  ],
+  "SelectedNode": "\\Mvc10B\\wwwroot\\lib",
+  "PreviewInSolutionExplorer": false
+}
