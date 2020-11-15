@@ -1,0 +1,18 @@
+@using Mvc10B.Models;
+@model Student
+
+<div>
+    <p>Er is een nieuwe student opgeslagen</p>
+    <table>
+        <tr>
+            <th>Studentnummer:</th>
+            <th>Naam:</th>
+            <th>Emailadres:</th>
+        </tr>
+        <tr>
+            <td>@Model.StudentNummer</td>
+            <td>@Model.VoorNaam</td>
+            <td>@Model.EmailAdres</td>
+        </tr>
+    </table>
+</div>

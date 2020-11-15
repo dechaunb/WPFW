@@ -1,0 +1,12 @@
+@model Mvc10B.Models.Student
+@{
+    Layout="";
+}
+
+<div>
+    <form name="aanmelding" action="/studenten/create" method="POST">
+        <label for="name">Voornaam: </label>
+        <input type="text" name="Naam" id="name">
+        <input type="submit" value="Aanmelden">
+    </form>
+</div>

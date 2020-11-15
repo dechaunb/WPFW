@@ -10,16 +10,16 @@ namespace Mvc10B.Controllers
         private static List<Student> studenten = new List<Student>() 
         {
             new Student() {
-                StudentNummer = 1, VoorNaam = "Scott", EmailAdres = "scott@student.hhs.nl"
+                StudentNummer = 1, VoorNaam = "Scott", EmailAdres = "1@student.hhs.nl"
             },
             new Student() {
-                StudentNummer = 2, VoorNaam = "Dechaun", EmailAdres = "dechaun@student.hhs.nl"
+                StudentNummer = 2, VoorNaam = "Dechaun", EmailAdres = "2@student.hhs.nl"
             },
             new Student() {
-                StudentNummer = 3, VoorNaam = "Alec", EmailAdres = "alec@student.hhs.nl"
+                StudentNummer = 3, VoorNaam = "Alec", EmailAdres = "3@student.hhs.nl"
             },
             new Student() {
-                StudentNummer = 4, VoorNaam = "Joeri", EmailAdres = "joeri@student.hhs.nl"
+                StudentNummer = 4, VoorNaam = "Joeri", EmailAdres = "4@student.hhs.nl"
             }
         };
 
@@ -65,6 +65,25 @@ namespace Mvc10B.Controllers
             ViewBag.StudentenMetVoorletter = result;
             ViewBag.VoorLetter = VoorLetter;
             return View();
+        }
+
+        public ActionResult Create() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(string Naam) {
+            int NieuwStudentNr = studenten.Count;
+            NieuwStudentNr+=1;
+            Student s = new Student() { StudentNummer = NieuwStudentNr, VoorNaam = Naam, EmailAdres = NieuwStudentNr + "@student.hhs.nl" };
+            studenten.Add(s);
+            
+            return RedirectToAction("IsCreated", s);
+        }
+
+        public IActionResult IsCreated(Student nieuweStudent) {
+            return View(nieuweStudent);
         }
     }
 }
