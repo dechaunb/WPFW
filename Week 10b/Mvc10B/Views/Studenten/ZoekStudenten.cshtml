@@ -1,0 +1,23 @@
+@model Mvc10B.Models.Student
+@{
+    Layout="";
+}
+
+<div>
+    Namen met de voorletter: 
+    <table>
+        <tr>
+            <th>Voornaam</th>
+            <th>Studentnummer</th>
+            <th>Email</th>    
+        </tr>
+        @ViewBag.VoorLetter @foreach (Student student in ViewBag.StudentenMetVoorLetter) 
+        { 
+            <tr>
+                <td>@student.VoorNaam</td>
+                <td>@student.StudentNummer</td>
+                <td>@student.EmailAdres</td>
+            </tr> 
+        }
+    </table>
+</div>

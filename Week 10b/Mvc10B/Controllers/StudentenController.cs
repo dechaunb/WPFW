@@ -23,10 +23,12 @@ namespace Mvc10B.Controllers
             }
         };
 
-        public IActionResult Aantal(string VoorNaam) {
+        public IActionResult Aantal(string VoorNaam) 
+        {
             int result = 0;
 
-            foreach(Student student in studenten) {
+            foreach(Student student in studenten) 
+            {
                 if(student.VoorNaam == VoorNaam)
                     result++;
             }
@@ -36,16 +38,32 @@ namespace Mvc10B.Controllers
             return View();
         }
 
-        public IActionResult Email(int StudentNummer) {
+        public IActionResult Email(int StudentNummer) 
+        {
             string result = "Het opgegeven studentnummer is niet in de lijst gevonden. Controleer het studentnummer en probeer het opnieuw!";
 
-            foreach(Student student in studenten) {
-                if(student.StudentNummer == StudentNummer) {
+            foreach(Student student in studenten) 
+            {
+                if(student.StudentNummer == StudentNummer) 
                     result = student.EmailAdres;
-                }
             }
 
             ViewBag.EmailAdres = result;
+            return View();
+        }
+
+        public IActionResult ZoekStudenten(string VoorLetter)
+        {
+            List<Student> result = new List<Student>();
+
+            foreach (Student student in studenten)
+            {
+                if(student.VoorNaam.Substring(0, 1) == VoorLetter)
+                    result.Add(student);
+            }
+
+            ViewBag.StudentenMetVoorletter = result;
+            ViewBag.VoorLetter = VoorLetter;
             return View();
         }
     }
