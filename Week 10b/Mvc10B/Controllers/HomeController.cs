@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mvc10B.Models;
+using Mvc10B.Controllers;
 
 namespace Mvc10B.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
+        public IActionResult GeefDeStudent(int id)
+        {           
+            return View(StudentControllers.StudentController.Studenten[id]);
         }
-
         public IActionResult Index()
         {
             return View();
@@ -26,16 +24,6 @@ namespace Mvc10B.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-        public IActionResult GeefDeStudent()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
