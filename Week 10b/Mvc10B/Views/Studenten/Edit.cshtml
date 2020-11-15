@@ -1,0 +1,25 @@
+@model Mvc10B.Models.Student
+@{
+    ViewData["Title"] = "Wijzig Student";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <form name="wijziging" action="/studenten/edit" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="studentnr">Huidig Studentnummer</label>
+                <input type="number" class="form-control" id="studentnr" name="HuidigStudentnummer" id="nowstudentnr" placeholder="Studentnummer">
+            </div>
+        </div>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="name">Nieuwe Voornaam</label>
+                <input type="text" class="form-control" id="name" name="NieuweNaam" id="newname" placeholder="Voornaam">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark">Wijzig Gegevens</button>
+    </form>
+</div>
