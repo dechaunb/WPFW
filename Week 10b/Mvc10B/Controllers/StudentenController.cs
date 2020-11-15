@@ -67,6 +67,34 @@ namespace Mvc10B.Controllers
             return View();
         }
 
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int HuidigStudentnummer, string NieuweNaam) {
+            Student OudeStudent = null;
+            Student NieuweStudent = null;
+
+            foreach (Student student in studenten)
+            {
+                if(student.StudentNummer == HuidigStudentnummer)
+                {
+                    OudeStudent = student;
+                    student.VoorNaam = NieuweNaam;
+                    NieuweStudent = student;
+                }
+            }
+
+            return RedirectToAction("IsEdited", NieuweStudent);
+        }
+
+        public IActionResult IsEdited(Student NieuweStudent)
+        {
+            return View(NieuweStudent);
+        }
+
         public ActionResult Create() 
         {
             return View();
