@@ -9,6 +9,7 @@ namespace Week_11b
         public DbSet<Student> Studenten {get; set;}
         public DbSet<Vak> Vakken {get; set;}
         public DbSet<Inschrijving> Inschrijvingen {get; set;}
+        public DbSet<Resultaat> Resultaten {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
