@@ -52,7 +52,16 @@ namespace Week_11b
         public int StudentId {get; set;}
         public Student Student {get; set;}
         public int VakId {get; set;}
-        public Vak Vak;
+        public Vak Vak {get; set;}
         public int Semester {get; set;}
+    }
+
+    public class Resultaat
+    {
+        [Key]
+        public int Id {get; set;}
+        public double Cijfer {get; set;}
+        public int InschrijvingId {get; set;}
+        public Inschrijving Inschrijving {get; set;}
     }
 }
