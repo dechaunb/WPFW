@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System;
 
 namespace Week_11b
 {
@@ -42,12 +44,13 @@ namespace Week_11b
         public int LeerJaar {get; set;}
 
         public Student(){
+            
             inschrijvingen = new List<Inschrijving>();
         }
         private List<Inschrijving> inschrijvingen;
         public void VoegInscrijvingToe(Inschrijving i){
-            if(!inschrijvingen.contains(i))
-                inschrijvingen.add(i);
+            if(!inschrijvingen.Contains(i))
+                inschrijvingen.Add(i);
         }
     }
     [Table("SchoolVak")]
@@ -67,8 +70,8 @@ namespace Week_11b
         }
         private List<Inschrijving> inschrijvingen;
         public void VoegInscrijvingToe(Inschrijving i){
-            if(!inschrijvingen.contains(i))
-                inschrijvingen.add(i);
+            if(!inschrijvingen.Contains(i))
+                inschrijvingen.Add(i);
         }
     }
 
@@ -77,9 +80,9 @@ namespace Week_11b
                 Resultaten = new List<Resultaat>();
         }
         private List<Resultaat> Resultaten;
-        public void VoegInscrijvingToe(Inschrijving i){
-            if(!Resultaten.contains(i))
-                Resultaten.add(i);
+        public void VoegInscrijvingToe(Resultaat r){
+            if(!Resultaten.Contains(r))
+                Resultaten.Add(r);
         }
         public int StudentId {get; set;}
         [NotMapped]
