@@ -40,6 +40,15 @@ namespace Week_11b
     public class Student : Persoon 
     {
         public int LeerJaar {get; set;}
+
+        public Student(){
+            inschrijvingen = new List<Inschrijving>();
+        }
+        private List<Inschrijving> inschrijvingen;
+        public void VoegInscrijvingToe(Inschrijving i){
+            if(!inschrijvingen.contains(i))
+                inschrijvingen.add(i);
+        }
     }
     [Table("SchoolVak")]
     public class Vak
@@ -52,9 +61,26 @@ namespace Week_11b
         public int DocentId {get; set;}
         [NotMapped]
         public Docent Docent {get; set;}
+
+        public Vak(){
+                inschrijvingen = new List<Inschrijving>();
+        }
+        private List<Inschrijving> inschrijvingen;
+        public void VoegInscrijvingToe(Inschrijving i){
+            if(!inschrijvingen.contains(i))
+                inschrijvingen.add(i);
+        }
     }
 
     public class Inschrijving {
+        public Inschrijving(){
+                Resultaten = new List<Resultaat>();
+        }
+        private List<Resultaat> Resultaten;
+        public void VoegInscrijvingToe(Inschrijving i){
+            if(!Resultaten.contains(i))
+                Resultaten.add(i);
+        }
         public int StudentId {get; set;}
         [NotMapped]
         public Student Student {get; set;}
