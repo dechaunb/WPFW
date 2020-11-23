@@ -10,7 +10,7 @@ namespace Mvc10B
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-        
+            modelBuilder.Entity<Student>.ToTable("Student");
         }
     }
 
