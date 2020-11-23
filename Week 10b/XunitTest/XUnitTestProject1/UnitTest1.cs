@@ -10,5 +10,10 @@ namespace XUnitTestProject1
         {
 
         }
+        [Fact]
+        public void test2()
+        {
+
+        }
     }
 }
