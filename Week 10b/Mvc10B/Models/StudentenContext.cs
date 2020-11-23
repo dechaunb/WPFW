@@ -15,14 +15,6 @@ namespace Mvc10B
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentDB>().ToTable("Student");
-
-            modelBuilder.HasSequence<int>("StudentNummers", schema: "shared")
-                .StartsAt(19000000)
-                .IncrementsBy(1);
-
-            modelBuilder.Entity<StudentDB>()
-                .Property(std => std.StudentNummer)
-                .HasDefaultValueSql("NEXT VALUE FOR shared.StudentNummers");
         }
     }
 
