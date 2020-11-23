@@ -22,7 +22,5 @@ namespace Mvc10B
         public string VoorNaam {get; set;}
         [StringLength(25)]
         public string EmailAdres {get; set;}
-    }
-
-    
+    }    
 }
