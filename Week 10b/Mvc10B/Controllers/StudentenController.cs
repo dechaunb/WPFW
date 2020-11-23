@@ -11,16 +11,16 @@ namespace Mvc10B.Controllers
         private static List<Student> studenten = new List<Student>() 
         {
             new Student() {
-                StudentNummer = 1, VoorNaam = "Scott", EmailAdres = "1@student.hhs.nl"
+                VoorNaam = "Scott", EmailAdres = "1@student.hhs.nl"
             },
             new Student() {
-                StudentNummer = 2, VoorNaam = "Dechaun", EmailAdres = "2@student.hhs.nl"
+                VoorNaam = "Dechaun", EmailAdres = "2@student.hhs.nl"
             },
             new Student() {
-                StudentNummer = 3, VoorNaam = "Alec", EmailAdres = "3@student.hhs.nl"
+                VoorNaam = "Alec", EmailAdres = "3@student.hhs.nl"
             },
             new Student() {
-                StudentNummer = 4, VoorNaam = "Joeri", EmailAdres = "4@student.hhs.nl"
+                VoorNaam = "Joeri", EmailAdres = "4@student.hhs.nl"
             }
         };
 
@@ -105,7 +105,7 @@ namespace Mvc10B.Controllers
         public ActionResult Create(string Naam) {
             int NieuwStudentNr = studenten.Count;
             NieuwStudentNr+=1;
-            StudentDB s = new StudentDB() { StudentNummer = NieuwStudentNr, VoorNaam = Naam, EmailAdres = NieuwStudentNr + "@student.hhs.nl" };
+            StudentDB s = new StudentDB() {VoorNaam = Naam, EmailAdres = NieuwStudentNr + "@student.hhs.nl" };
 
             using(var ctx = new StudentContext())
             {
