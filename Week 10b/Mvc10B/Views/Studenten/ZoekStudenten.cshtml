@@ -11,7 +11,7 @@
             <th scope="col">Studentnummer</th>
             <th scope="col">Email</th>    
         </tr>
-        @ViewBag.VoorLetter @foreach (Student student in ViewBag.StudentenMetVoorLetter) 
+        @ViewBag.VoorLetter @foreach (StudentDB student in ViewBag.StudentenMetVoorLetter) 
         { 
             <tr>
                 <td>@student.VoorNaam</td>

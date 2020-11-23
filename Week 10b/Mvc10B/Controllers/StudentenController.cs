@@ -3,35 +3,21 @@ using System.Text.Encodings.Web;
 using System.Collections.Generic;
 using Mvc10B.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Mvc10B.Controllers
 {
     public class StudentenController : Controller
     {
-        private static List<Student> studenten = new List<Student>() 
-        {
-            new Student() {
-                VoorNaam = "Scott", EmailAdres = "1@student.hhs.nl"
-            },
-            new Student() {
-                VoorNaam = "Dechaun", EmailAdres = "2@student.hhs.nl"
-            },
-            new Student() {
-                VoorNaam = "Alec", EmailAdres = "3@student.hhs.nl"
-            },
-            new Student() {
-                VoorNaam = "Joeri", EmailAdres = "4@student.hhs.nl"
-            }
-        };
+        private static List<StudentDB> studenten = new List<StudentDB>();
 
         public IActionResult Aantal(string VoorNaam) 
         {
             int result = 0;
 
-            foreach(Student student in studenten) 
+            using(var ctx = new StudentContext())
             {
-                if(student.VoorNaam == VoorNaam)
-                    result++;
+                result = ctx.Studenten.Where(std => std.VoorNaam == VoorNaam).Count();
             }
 
             ViewBag.AantalStudenten = result;
@@ -43,10 +29,9 @@ namespace Mvc10B.Controllers
         {
             string result = "Het opgegeven studentnummer is niet in de lijst gevonden. Controleer het studentnummer en probeer het opnieuw!";
 
-            foreach(Student student in studenten) 
+            using(var ctx = new StudentContext())
             {
-                if(student.StudentNummer == StudentNummer) 
-                    result = student.EmailAdres;
+                result = ctx.Studenten.Where(std => std.StudentNummer == StudentNummer).Select(std => std.EmailAdres).SingleOrDefault();
             }
 
             ViewBag.EmailAdres = result;
@@ -55,16 +40,17 @@ namespace Mvc10B.Controllers
 
         public IActionResult ZoekStudenten(string VoorLetter)
         {
-            List<Student> result = new List<Student>();
-
-            foreach (Student student in studenten)
+            using(var ctx = new StudentContext())
             {
-                if(student.VoorNaam.Substring(0, 1) == VoorLetter)
-                    result.Add(student);
+                var ZoekStudent = ctx.Studenten.Where(std => std.VoorNaam.StartsWith(VoorLetter)).ToList();
+                
+                if(ZoekStudent != null)
+                {
+                    ViewBag.VoorLetter = VoorLetter;
+                    ViewBag.StudentenMetVoorletter = ZoekStudent;
+                }
             }
 
-            ViewBag.StudentenMetVoorletter = result;
-            ViewBag.VoorLetter = VoorLetter;
             return View();
         }
 
@@ -74,24 +60,25 @@ namespace Mvc10B.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int HuidigStudentnummer, string NieuweNaam) {
-            Student OudeStudent = null;
-            Student NieuweStudent = null;
+        public ActionResult Edit(int HuidigStudentnummer, string NieuweNaam, StudentContext context) {
+            StudentDB NieuweStudent = null;
 
-            foreach (Student student in studenten)
+            using(var ctx = new StudentContext())
             {
-                if(student.StudentNummer == HuidigStudentnummer)
-                {
-                    OudeStudent = student;
-                    student.VoorNaam = NieuweNaam;
-                    NieuweStudent = student;
+                var OudeStudent = ctx.Studenten.FirstOrDefault(std => std.StudentNummer == HuidigStudentnummer);
+
+                if(OudeStudent != null) {
+                    OudeStudent.VoorNaam = NieuweNaam;
+                    ctx.SaveChanges();
+                    NieuweStudent = OudeStudent;
                 }
             }
+
 
             return RedirectToAction("IsEdited", NieuweStudent);
         }
 
-        public IActionResult IsEdited(Student NieuweStudent)
+        public IActionResult IsEdited(StudentDB NieuweStudent)
         {
             return View(NieuweStudent);
         }
@@ -102,9 +89,10 @@ namespace Mvc10B.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string Naam) {
-            int NieuwStudentNr = studenten.Count;
-            NieuwStudentNr+=1;
+        public ActionResult Create(string Naam, StudentContext context) {
+            var AantalStudenten = context.Studenten.Count();
+
+            int NieuwStudentNr = AantalStudenten + 1;
             StudentDB s = new StudentDB() {VoorNaam = Naam, EmailAdres = NieuwStudentNr + "@student.hhs.nl" };
 
             using(var ctx = new StudentContext())

@@ -11,9 +11,18 @@ namespace Mvc10B
 
         public DbSet<StudentDB> Studenten {get; set;}
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentDB>().ToTable("Student");
+
+            modelBuilder.HasSequence<int>("StudentNummers", schema: "shared")
+                .StartsAt(19000000)
+                .IncrementsBy(1);
+
+            modelBuilder.Entity<StudentDB>()
+                .Property(std => std.StudentNummer)
+                .HasDefaultValueSql("NEXT VALUE FOR shared.StudentNummers");
         }
     }
 
@@ -25,5 +34,11 @@ namespace Mvc10B
         public string VoorNaam {get; set;}
         [StringLength(25)]
         public string EmailAdres {get; set;}
+        
     }    
+
+    public class DbInitializer
+    {
+        
+    }
 }
