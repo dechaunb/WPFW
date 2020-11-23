@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Week_11b
 {
@@ -22,7 +23,9 @@ namespace Week_11b
     {
         [Key]
         public int Id {get; set;}
+        [StringLength(15)]
         public string VoorNaam {get; set;}
+        [StringLength(25)]
         public string AchterNaam {get; set;}
         public string MailAdres {get; set;}
     }
@@ -38,21 +41,25 @@ namespace Week_11b
     {
         public int LeerJaar {get; set;}
     }
-
+    [Table("SchoolVak")]
     public class Vak
     {
         [Key]
         public int Id {get; set;}
+        [Column("SP")]
         public int StudiePunten {get; set;}
         public string Beschrijving {get; set;}
         public int DocentId {get; set;}
+        [NotMapped]
         public Docent Docent {get; set;}
     }
 
     public class Inschrijving {
         public int StudentId {get; set;}
+        [NotMapped]
         public Student Student {get; set;}
         public int VakId {get; set;}
+        [NotMapped]
         public Vak Vak {get; set;}
         public int Semester {get; set;}
     }
@@ -63,6 +70,7 @@ namespace Week_11b
         public int Id {get; set;}
         public double Cijfer {get; set;}
         public int InschrijvingId {get; set;}
+        [NotMapped]
         public Inschrijving Inschrijving {get; set;}
     }
 }
