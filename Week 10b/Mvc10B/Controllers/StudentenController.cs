@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using System.Collections.Generic;
 using Mvc10B.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mvc10B.Controllers
 {
@@ -104,9 +105,14 @@ namespace Mvc10B.Controllers
         public ActionResult Create(string Naam) {
             int NieuwStudentNr = studenten.Count;
             NieuwStudentNr+=1;
-            Student s = new Student() { StudentNummer = NieuwStudentNr, VoorNaam = Naam, EmailAdres = NieuwStudentNr + "@student.hhs.nl" };
-            studenten.Add(s);
-            
+            StudentDB s = new StudentDB() { StudentNummer = NieuwStudentNr, VoorNaam = Naam, EmailAdres = NieuwStudentNr + "@student.hhs.nl" };
+
+            using(var ctx = new StudentContext())
+            {
+                ctx.Add(s);
+                ctx.SaveChanges();
+            }
+
             return RedirectToAction("IsCreated", s);
         }
 

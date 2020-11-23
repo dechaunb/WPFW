@@ -6,15 +6,18 @@ namespace Mvc10B
 {
     public class StudentContext : DbContext
     {
-        public DbSet<Student> Studenten {get; set;}
+        protected override void OnConfiguring(DbContextOptionsBuilder b) =>
+            b.UseSqlite("Data Source=database.db");
+
+        public DbSet<StudentDB> Studenten {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>.ToTable("Student");
+            modelBuilder.Entity<StudentDB>().ToTable("Student");
         }
     }
 
-    public class Student
+    public class StudentDB
     {
         [Key]
         public int StudentNummer {get; set;}
