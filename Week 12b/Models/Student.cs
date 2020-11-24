@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-namespace Week_12B.Models
+namespace Week_12b.Models
 {
     public class Student
     {
