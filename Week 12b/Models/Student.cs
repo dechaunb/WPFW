@@ -14,8 +14,10 @@ namespace Week_12B.Models
         [StringLength(20)]
         public string AchterNaam {get; set;}
         [Required]
-        [Display(Name = "Geboortedatum")]
-        public DateTime GeboorteDatum {get; set;}
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Inschrijfdatum")]
+        public DateTime Inschrijving {get; set;}
         [Required]
         public string Opleiding {get; set;}
         [Required]
