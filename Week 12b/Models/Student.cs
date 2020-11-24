@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Week_12B.Models
 {
@@ -13,7 +15,7 @@ namespace Week_12B.Models
         public string AchterNaam {get; set;}
         [Required]
         [Display(Name = "Geboortedatum")]
-        public Date GeboorteDatum {get; set;}
+        public DateTime GeboorteDatum {get; set;}
         [Required]
         public string Opleiding {get; set;}
         [Required]
