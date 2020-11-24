@@ -37,7 +37,21 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            <div>
             &copy; 2020 - Week_12b - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+            <div class="col-3">
+            @{
+                List<Student> Studenten = new List<Student>{
+                    new Student {VoorNaam="Anna",AchterNaam ="Bell",HoogsteCijfer=4},
+                    new Student {VoorNaam="Bart",AchterNaam = "van de Berg",HoogsteCijfer=5},
+                    new Student {VoorNaam="Truus",AchterNaam ="het Sapapparaat",HoogsteCijfer=3},
+                    new Student {VoorNaam="Henkie",AchterNaam ="de roker",HoogsteCijfer=1},
+                    new Student {VoorNaam="Betweter",AchterNaam ="je moeder",HoogsteCijfer=10}
+                    };
+            }
+            </div>
+        <partial name = "_student" for="@Studenten"/>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

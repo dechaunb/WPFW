@@ -17,7 +17,6 @@ namespace Week_12b.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();

@@ -1,0 +1,17 @@
+@model List<Student>
+<div class="col-5">
+    <h4> Studenten met de beste cijfers :</h4>
+    <Table>
+        <tr>
+            <th>Naam</th>
+            <th>Cijfer</th>
+        </tr>
+@foreach (var student in Model.OrderByDescending(m=>m.HoogsteCijfer).Take(3))
+{
+    <tr>
+        <td>@student.VoorNaam @student.AchterNaam <br></td>
+        <td>@student.HoogsteCijfer <br></td>
+    </tr>
+}
+</Table>
+</div>

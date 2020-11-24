@@ -149,5 +149,8 @@ namespace Week_12b.Controllers
         {
             return _context.Students.Any(e => e.Id == id);
         }
+        public async Task<IActionResult> _student(){
+        return View(await _context.Students.ToListAsync());
+     }   
     }
 }
