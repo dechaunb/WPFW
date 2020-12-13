@@ -15661,6 +15661,11 @@
       "FilePath": "c:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\Views\\Student\\Details.cshtml",
       "TargetPath": "Views\\Student\\Details.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\Views\\Student\\CreateCursus.cshtml",
+      "TargetPath": "Views\\Student\\CreateCursus.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

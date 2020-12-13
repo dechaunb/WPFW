@@ -11,5 +11,6 @@ namespace week14.Data
         }
 
         public DbSet<Student> Student { get; set; }
+        public DbSet<Cursus> Cursus { get; set; }
     }
 }
