@@ -1,0 +1,38 @@
+@model List<Student>
+<div>
+<select id="inputSorteer" class="form-control w-100" onchange="javascript:handleSelect(this)">
+        <option selected>Sorteren op...</option>
+        <option value="/Home/Studenten?sorterenOp=id">Id</option>
+        <option value="/Home/Studenten?sorterenOp=naam">Naam</option>
+        <option value="/Home/Studenten?sorterenOp=cursus">cursus</option>
+        <option value="/Home/Studenten?sorterenOp=lengte">Lengte</option>
+</select>
+<form asp-action="Index"
+
+
+</div>
+    <table>
+        <tr>
+            <th>naam Student</th>
+            <th>ID Student</th>
+            <th>student Lengte</th>
+            <th>cursus</th>
+        </tr>
+@foreach (var student in Model)
+{
+    <tr>
+        <td>@student.studentNaam</td>
+        <td>@student.studentId</td>
+        <td>@student.lengte</td>
+        <td>@student.cursus</td>
+    </tr>
+}
+    </table>
+
+
+<script>
+      function handleSelect(elm)
+  {
+     window.location = elm.value;
+  }
+</script>
