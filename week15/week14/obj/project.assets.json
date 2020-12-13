@@ -7500,19 +7500,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joeri\\.nuget\\packages\\": {}
+    "C:\\Users\\alecv\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\week14.csproj",
+      "projectUniqueName": "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\week14.csproj",
       "projectName": "week14",
-      "projectPath": "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\week14.csproj",
-      "packagesPath": "C:\\Users\\joeri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\obj\\",
+      "projectPath": "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\week14.csproj",
+      "packagesPath": "C:\\Users\\alecv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\joeri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alecv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
