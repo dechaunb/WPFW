@@ -1,5 +1,5 @@
 @model IEnumerable<week14.Models.Student>
-
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewData["Title"] = "Index";
 }
@@ -17,6 +17,13 @@
         <option value="/Student/StudentIndex?sorterenOp=cursus">cursus</option>
         <option value="/Student/StudentIndex?sorterenOp=lengte">Lengte</option>
 </select>
+<div>
+<form asp-action="StudentIndex" method="get">
+    Filter: <input type="text" name="filter" />
+    <input type="submit" value="Filter" />
+</form>
+
+</div>
 <table class="table">
     <thead>
         <tr>

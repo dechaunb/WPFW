@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using week14.Data;
 using week14.Models;
 
+
 namespace week14.Controllers
 {
     public class StudentController : Controller
@@ -19,33 +20,44 @@ namespace week14.Controllers
             _context = context;
         }
 
-        public IActionResult StudentIndex(string filter,string sorterenOp)
-        {
+        public async Task<IActionResult> StudentIndex(string filter,string sorterenOp)
+        {   
             var studentContext = _context.Student.Include(s => s.cursus);
-            List<Student> student = _context.Student.ToList();
+            List<Student> studentenList = studentContext.ToList();
             List<Student> query = new List<Student>();
-
+            
+            if(filter!=null){
+                foreach (var student in studentenList.Where(s=>(s.studentNaam.Contains(filter))||(s.studentId.ToString().Contains(filter))||(s.lengte.ToString().Contains(filter))))
+                {
+                     query.Add(student);
+                }
+                studentenList = query;
+            }
+            if(query.Count()==0){
+                query=studentenList;
+            }
             if(sorterenOp!=null){
-                if(sorterenOp.Equals("studentId")){
-                    query = student.OrderBy(s=>s.studentId).ToList();
-                }else if(sorterenOp.Equals("studentNaam")){
-                    query = student.OrderBy(s=>s.studentNaam).ToList();
+                if(sorterenOp.Equals("id")){
+                    query = query.OrderBy(s=>s.studentId).ToList();
+                }else if(sorterenOp.Equals("naam")){
+                    query = query.OrderBy(s=>s.studentNaam).ToList();
                 }else if(sorterenOp.Equals("lengte")){
-                    query = student.OrderByDescending(s=>s.lengte).ToList();
-                }else if(sorterenOp.Equals("cursusId")){
-                    query = student.OrderByDescending(s=>s.cursusId).ToList();
+                    query = query.OrderBy(s=>s.lengte).ToList();
+                }else if(sorterenOp.Equals("cursus")){
+                    query = query.OrderBy(s=>s.cursusId).ToList();
                 }
             }
-
             return View(query);
         }
 
         // GET: Student
+        /*
         public async Task<IActionResult> StudentIndex()
         {
             var studentContext = _context.Student.Include(s => s.cursus);
             return View(await studentContext.ToListAsync());
         }
+        */
 
         // GET: Student/Details/5
         public async Task<IActionResult> Details(int? id)
