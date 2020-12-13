@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\week14.csproj": {}
+    "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\week14.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\week14.csproj": {
+    "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\week14.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\week14.csproj",
+        "projectUniqueName": "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\week14.csproj",
         "projectName": "week14",
-        "projectPath": "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\week14.csproj",
-        "packagesPath": "C:\\Users\\alecv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alecv\\source\\repos\\gitproject_week_10\\WPFW\\WPFW\\week15\\week14\\obj\\",
+        "projectPath": "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\week14.csproj",
+        "packagesPath": "C:\\Users\\joeri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joeri\\OneDrive\\Documenten\\GitHub\\WPFW\\week15\\week14\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alecv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joeri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,34 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SQLite": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

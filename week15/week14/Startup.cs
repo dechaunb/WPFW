@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using week14.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace week14
 {
@@ -24,6 +26,9 @@ namespace week14
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<StudentContext>(options =>
+            options.UseSqlite(Configuration.GetConnectionString("StudentContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
