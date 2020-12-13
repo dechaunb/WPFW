@@ -1,0 +1,8 @@
+    <a href="/Students?sorteerVolgorde=oplopend">↑</a>
+    <a href="/Students?sorteerVolgorde=aflopend">↓</a>
+    <a asp-action="Index" asp-route-sorteerVolgorde="oplopend"></a>
+
+    @if ((string)ViewData["Sorteer"] == "aflopend")
+    { <a asp-action="Index" asp-route-sorteerVolgorde="oplopend">↑</a> }
+    else
+    { <a asp-action="Index" asp-route-sorteerVolgorde="aflopend">↓</a> }

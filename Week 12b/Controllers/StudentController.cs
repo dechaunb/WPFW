@@ -14,15 +14,29 @@ namespace Week_12b.Controllers
     {
         private readonly StudentContext _context;
 
+
         public StudentController(StudentContext context)
         {
             _context = context;
         }
 
         // GET: Student
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Students.ToListAsync());
+        
+                public async Task<IActionResult> StudentenIndex(string sorteerVolgorde){
+                    List<Student> Lijst = new List<Student>{
+                    new Student {VoorNaam="Anna",AchterNaam ="Bell",HoogsteCijfer=4},
+                    new Student {VoorNaam="Bart",AchterNaam = "van ses Berg",HoogsteCijfer=5},
+                    new Student {VoorNaam="Truus",AchterNaam ="het Sapapparaat",HoogsteCijfer=3},
+                    new Student {VoorNaam="Henkie",AchterNaam ="de roker",HoogsteCijfer=1},
+                    new Student {VoorNaam="Betweter",AchterNaam ="je moeder",HoogsteCijfer=10}
+                    };
+            IQueryable<Student> lijst = _context.Students;
+            switch (sorteerVolgorde)
+            {
+            case "aflopend": lijst = lijst.OrderByDescending(s => s.VoorNaam); break;
+            default: lijst = lijst.OrderBy(s => s.VoorNaam); break;
+            }
+            return View(await lijst.ToListAsync());
         }
 
         // GET: Student/Details/5
