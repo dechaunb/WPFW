@@ -170,3 +170,4 @@ C:\Users\joeri\OneDrive\Documenten\GitHub\WPFW\week15\week14\obj\Debug\net5.0\Ra
 C:\Users\joeri\OneDrive\Documenten\GitHub\WPFW\week15\week14\obj\Debug\net5.0\Razor\Views\Student\Details.cshtml.g.cs
 C:\Users\joeri\OneDrive\Documenten\GitHub\WPFW\week15\week14\obj\Debug\net5.0\Razor\Views\Student\Edit.cshtml.g.cs
 C:\Users\joeri\OneDrive\Documenten\GitHub\WPFW\week15\week14\obj\Debug\net5.0\Razor\Views\Student\StudentIndex.cshtml.g.cs
+C:\Users\joeri\OneDrive\Documenten\GitHub\WPFW\week15\week14\obj\Debug\net5.0\Razor\Views\Student\CreateCursus.cshtml.g.cs
