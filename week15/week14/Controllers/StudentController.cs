@@ -19,23 +19,25 @@ namespace week14.Controllers
             _context = context;
         }
 
-        public IActionResult Studenten(string filter,string sorterenOp)
+        public IActionResult StudentIndex(string filter,string sorterenOp)
         {
+            var studentContext = _context.Student.Include(s => s.cursus);
             List<Student> student = _context.Student.ToList();
             List<Student> query = new List<Student>();
 
             if(sorterenOp!=null){
-                if(sorterenOp.Equals("id")){
+                if(sorterenOp.Equals("studentId")){
                     query = student.OrderBy(s=>s.studentId).ToList();
-                }else if(sorterenOp.Equals("naam")){
+                }else if(sorterenOp.Equals("studentNaam")){
                     query = student.OrderBy(s=>s.studentNaam).ToList();
                 }else if(sorterenOp.Equals("lengte")){
                     query = student.OrderByDescending(s=>s.lengte).ToList();
-                }else if(sorterenOp.Equals("cursus")){
+                }else if(sorterenOp.Equals("cursusId")){
                     query = student.OrderByDescending(s=>s.cursusId).ToList();
                 }
             }
-            return View(_context.Student);
+
+            return View(query);
         }
 
         // GET: Student
