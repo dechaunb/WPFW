@@ -27,6 +27,7 @@ namespace week14.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     studentNaam = table.Column<string>(type: "TEXT", nullable: true),
                     lengte = table.Column<int>(type: "INTEGER", nullable: false),
+                    leeftijd = table.Column<int>(type: "INTEGER", nullable: true),
                     cursusId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

@@ -22,7 +22,7 @@ namespace week14.Controllers
 
         public async Task<IActionResult> StudentIndex(string filter,string sorterenOp)
         {   
-            var studentContext = _context.Student.Include(s => s.cursus);
+            var studentContext = _context.Student;
             List<Student> studentenList = studentContext.ToList();
             List<Student> query = new List<Student>();
             
@@ -90,7 +90,7 @@ namespace week14.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("studentId,studentNaam,lengte,cursusId")] Student student)
+        public async Task<IActionResult> Create([Bind("studentId,studentNaam,lengte,leeftijd,cursusId")] Student student)
         {
             if (ModelState.IsValid)
             {

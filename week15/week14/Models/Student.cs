@@ -8,6 +8,7 @@ namespace week14.Models
         public int studentId {get;set;}
         public string studentNaam {get;set;}
         public int lengte {get; set;}
+        public int leeftijd {get; set;}
         public int cursusId {get; set;}
         public Cursus cursus {get; set;}
     }

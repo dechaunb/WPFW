@@ -42,6 +42,9 @@ namespace week14.Migrations
 
                     b.Property<int>("lengte")
                         .HasColumnType("INTEGER");
+                        
+                        b.Property<int>("leeftijd")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("studentNaam")
                         .HasColumnType("TEXT");

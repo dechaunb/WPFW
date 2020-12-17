@@ -44,6 +44,9 @@ namespace week14.Migrations
                     b.Property<string>("studentNaam")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("leeftijd")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("studentId");
 
                     b.HasIndex("cursusId");
